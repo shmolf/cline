@@ -22,7 +22,6 @@ export interface WebviewMessage {
 		| "telemetrySetting"
 		| "invoke"
 		| "updateSettings"
-		| "clearAllTaskHistory"
 		| "fetchUserCreditsData"
 		| "optionsResponse"
 		| "searchFiles"
