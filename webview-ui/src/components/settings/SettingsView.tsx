@@ -36,6 +36,7 @@ import { TabButton } from "../mcp/configuration/McpConfigurationView"
 import { useEvent } from "react-use"
 import { ExtensionMessage } from "@shared/ExtensionMessage"
 import { StateServiceClient } from "@/services/grpc-client"
+import { TelemetrySettingEnum } from "@shared/proto/state"
 import FeatureSettingsSection from "./FeatureSettingsSection"
 import BrowserSettingsSection from "./BrowserSettingsSection"
 import TerminalSettingsSection from "./TerminalSettingsSection"
@@ -197,7 +198,6 @@ const SettingsView = ({ onDone, targetSection }: SettingsViewProps) => {
 			type: "updateSettings",
 			planActSeparateModelsSetting,
 			customInstructionsSetting: customInstructions,
-			telemetrySetting,
 			enableCheckpointsSetting,
 			mcpMarketplaceEnabled,
 			apiConfiguration: apiConfigurationToSubmit,
