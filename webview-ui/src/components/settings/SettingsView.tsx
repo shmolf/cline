@@ -608,9 +608,19 @@ const SettingsView = ({ onDone, targetSection }: SettingsViewProps) => {
 											<VSCodeCheckbox
 												className="mb-[5px]"
 												checked={telemetrySetting !== "disabled"}
-												onChange={(e: any) => {
+												onChange={async (e: any) => {
 													const checked = e.target.checked === true
-													setTelemetrySetting(checked ? "enabled" : "disabled")
+													const newSetting = checked ? "enabled" : "disabled"
+													setTelemetrySetting(newSetting)
+													try {
+														await StateServiceClient.updateTelemetrySetting({
+															setting: checked
+																? TelemetrySettingEnum.ENABLED
+																: TelemetrySettingEnum.DISABLED,
+														})
+													} catch (error) {
+														console.error("Error updating telemetry setting:", error)
+													}
 												}}>
 												Allow anonymous error and usage reporting
 											</VSCodeCheckbox>
