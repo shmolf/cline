@@ -21,6 +21,7 @@ export interface ExtensionMessage {
 		| "workspaceUpdated"
 		| "partialMessage"
 		| "openRouterModels"
+		| "requestyModels"
 		| "mcpServers"
 		| "relinquishControl"
 		| "mcpMarketplaceCatalog"
