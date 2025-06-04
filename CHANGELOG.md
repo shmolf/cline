@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.18.0
+
+### Minor Changes
+
+-   00901e0: Ollama: Use a filterable dropdown instead of radio selection
+-   0a3d0e3: Migrate chatButtonClicked to Protobus
+
+### Patch Changes
+
+-   8cbf25c: adding support for streamable mcp server
+-   a6ce75d: Telemetry fix
+
 ## [3.17.9]
 
 -   Aligning Cline to work with Claude 4 model family (Experimental)
