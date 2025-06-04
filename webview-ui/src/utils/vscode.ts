@@ -10,6 +10,13 @@ import type { WebviewApi } from "vscode-webview"
  * dev server by using native web browser features that mock the functionality
  * enabled by acquireVsCodeApi.
  */
+declare global {
+	interface Window {
+		__is_intellij__?: boolean
+		jsEventHandler?: (event: any) => void
+	}
+}
+
 class VSCodeAPIWrapper {
 	private readonly vsCodeApi: WebviewApi<unknown> | undefined
 
@@ -32,8 +39,17 @@ class VSCodeAPIWrapper {
 	public postMessage(message: WebviewMessage) {
 		if (this.vsCodeApi) {
 			this.vsCodeApi.postMessage(message)
+		} else if (window.__is_intellij__) {
+			const json = JSON.stringify(message)
+			console.log("Intellij event handler: " + json.slice(0, 200))
+			const handler =
+				window.jsEventHandler ||
+				((_message: unknown) => {
+					console.log("IntelliJ handler not found.")
+				})
+			handler(JSON.stringify(message))
 		} else {
-			console.log(message)
+			console.log("postMessage fallback: " + JSON.stringify(message))
 		}
 	}
 
